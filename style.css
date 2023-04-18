@@ -1,0 +1,27 @@
+.city{
+    font-size: 2em;
+}
+
+.date{
+    font-size: 1em;
+}
+
+.container-temp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 3px, 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-size: 5em;
+    font-weight: 900;
+    text-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.weather{
+    font-size: 2em;
+}
+
+.low-high{
+    font-size: 1.5em;
+}
