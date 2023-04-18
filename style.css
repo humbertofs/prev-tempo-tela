@@ -1,9 +1,14 @@
+body {
+    background: radial-gradient(circle, rgba(241,255,0,1) 0%, rgba(255,218,0,1) 43%, rgba(231,0,255,1) 100%);
+    height: 1%;
+}
+
 .city{
-    font-size: 2em;
+    font-size: 3em;
 }
 
 .date{
-    font-size: 1em;
+    font-size: 2em;
 }
 
 .container-temp{
@@ -13,15 +18,29 @@
     background-color: rgba(0, 0, 0, 0.2);
     box-shadow: 3px, 6px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    font-size: 5em;
+    font-size: 6em;
     font-weight: 900;
     text-shadow: 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .weather{
-    font-size: 2em;
+    font-size: 3em;
 }
 
 .low-high{
-    font-size: 1.5em;
+    font-size: 2em;
+}
+
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5em;
+}
+
+.cardStyle {
+    border-radius: 15px;
+    border: 1px darkorchid dashed;
+    background-color: rgb(255, 247, 0);
 }
