@@ -33,7 +33,7 @@ window.addEventListener('load', () => {
 })
 
 function coordResults(lat, long) {
-    fetch(`${api.base}weather?lat=${lat}&lon=${long}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
+    fetch(`${api.base}forecast?lat=${lat}&lon=${long}&lang=${api.lang}&units=${api.units}&cnt=7&APPID=${api.key}`)
         .then(response => {
             if (response.ok) {
                 throw new Error(`http error: status ${response.status}`)
@@ -60,8 +60,25 @@ function enter(event) {
     }
 }
 
-function searchResults(city) {
+/* function searchResults(city) {
     fetch(`${api.base}weather?q=${city}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`http error: status ${response.status}`)
+            }
+            return response.json();
+        })
+        .catch(error => {
+            alert(error.message)
+        })
+        .then(response => {
+            displayResults(response)
+        });
+} */
+
+/* Tentativa de requisitar Forecast */
+function searchResults(city) {
+    fetch(`${api.base}forecast?q=${city}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`http error: status ${response.status}`)
@@ -76,10 +93,32 @@ function searchResults(city) {
         });
 }
 
-function displayResults(weather) {
+/* function displayResults(weather) {
     console.log(weather)
 
     city.innerText = `${weather.name}, ${weather.sys.country}`;
+
+    let now = new Date();
+    date.innerText = dateBuilder(now);
+
+    let iconName = weather.weather[0].icon;
+    container_img.innerHTML = `<img src="./icons/${iconName}.png">`;
+
+    let temperature = `${Math.round(weather.main.temp)}`
+    temp_number.innerHTML = temperature;
+    temp_unit.innerHTML = `°C`;
+
+    weather_tempo = weather.weather[0].description;
+    weather_t.innerText = capitalizeFirstLetter(weather_tempo)
+
+    low_high.innerHTML = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
+} */
+
+/* Tentativa de mostrar os resultados do Forecast */
+function displayResults(weather) {
+    console.log(weather)
+
+    city.innerText = `${forecast.name}, ${forecast.sys.country}`;
 
     let now = new Date();
     date.innerText = dateBuilder(now);
