@@ -6,6 +6,7 @@ body {
 .h1 {
     font-weight: 900;
     color: white;
+    padding: 10px;
 }
 
 .city{
@@ -51,6 +52,6 @@ body {
 }
 
 .logoMassaFM {
-    width: 25em;
+    width: 35em;
     margin: 0 5em;
 }
