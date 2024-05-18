@@ -5,7 +5,7 @@ const api = {
     units: "metric"
 }
 
-const cityName = document.querySelector('.cityName');
+const city = document.querySelector('.cityName');
 const date = document.querySelector('.date');
 const container_img = document.querySelector('.container-img');
 const container_temp = document.querySelector('.container-temp');
@@ -62,25 +62,8 @@ function enter(event) {
     }
 } */
 
-/* function searchResults(city) {
-    fetch(`${api.base}weather?q=${city}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`http error: status ${response.status}`)
-            }
-            return response.json();
-        })
-        .catch(error => {
-            alert(error.message)
-        })
-        .then(response => {
-            displayResults(response)
-        });
-} */
-
-/* Tentativa de requisitar Forecast */
 function searchResults(city) {
-    fetch(`${api.base}forecast?q=${city}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
+    fetch(`${api.base}weather?q=${city}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`http error: status ${response.status}`)
@@ -95,7 +78,24 @@ function searchResults(city) {
         });
 }
 
-/* function displayResults(weather) {
+/* Tentativa de requisitar Forecast */
+// function searchResults(city) {
+//     fetch(`${api.base}weather?q=${city}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error(`http error: status ${response.status}`)
+//             }
+//             return response.json();
+//         })
+//         .catch(error => {
+//             alert(error.message)
+//         })
+//         .then(response => {
+//             displayResults(response)
+//         });
+// }
+
+function displayResults(weather) {
     console.log(weather)
 
     city.innerText = `${weather.name}, ${weather.sys.country}`;
@@ -114,33 +114,33 @@ function searchResults(city) {
     weather_t.innerText = capitalizeFirstLetter(weather_tempo)
 
     low_high.innerHTML = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
-} */
+}
 
 /* Tentativa de mostrar os resultados do Forecast */
-function displayResults(forecast) {
-    console.log(forecast)
+// function displayResults(forecast) {
+//     console.log(forecast)
 
-    cityName.innerText = `${forecast.name}, ${city.sys.country}`;
+//     cityName.innerText = `${weather.name}, ${weat.sys.country}`;
 
-    let now = new Date();
-    date.innerText = dateBuilder(now);
+//     let now = new Date();
+//     date.innerText = dateBuilder(now);
 
-    let iconName = weather.weather.icon;
-    container_img.innerHTML = `<img src="./icons/${iconName}.png">`;
+//     let iconName = weather.weather.icon;
+//     container_img.innerHTML = `<img src="./icons/${iconName}.png">`;
 
-    let temperature = `${Math.round(weather.main.temp)}`
-    temp_number.innerHTML = temperature;
-    temp_unit.innerHTML = `°C`;
+//     let temperature = `${Math.round(weather.main.temp)}`
+//     temp_number.innerHTML = temperature;
+//     temp_unit.innerHTML = `°C`;
 
-    weather_tempo = weather.weather[0].description;
-    weather_t.innerText = capitalizeFirstLetter(weather_tempo)
+//     weather_tempo = weather.weather[0].description;
+//     weather_t.innerText = capitalizeFirstLetter(weather_tempo)
 
-    low_high.innerHTML = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
+//     low_high.innerHTML = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
 
-    container_feels_like.innerHTML = `${Math.round(forecast.feels_like)}°C`;
+//     container_feels_like.innerHTML = `${Math.round(forecast.feels_like)}°C`;
 
-    weather_alert.innerHTML = '${(forecast.weather-alert)}';
-}
+//     weather_alert.innerHTML = '${(forecast.weather-alert)}';
+// }
 
 function dateBuilder(d) {
     let days = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
