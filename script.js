@@ -5,18 +5,20 @@ const api = {
     units: "metric"
 }
 
-const city = document.querySelector('.city');
+const cityName = document.querySelector('.cityName');
 const date = document.querySelector('.date');
 const container_img = document.querySelector('.container-img');
 const container_temp = document.querySelector('.container-temp');
+const container_feels_like = document.querySelector('.container-feels-like')
 const temp_number = document.querySelector('.container-temp div');
 const temp_unit = document.querySelector('.container-temp span');
 const weather_t = document.querySelector('.weather');
 const search_input = document.querySelector('.form-control');
 const search_button = document.querySelector('.btn');
 const low_high = document.querySelector('.low-high');
+const weather_alert = document.querySelector('weather-alert');
 
-window.addEventListener('load', () => {
+/* window.addEventListener('load', () => {
     //if ("geolocation" in navigator)
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(setPosition, showError);
@@ -30,9 +32,9 @@ window.addEventListener('load', () => {
         let long = position.coords.longitude;
         coordResults(lat, long);
     }
-})
+}) */
 
-function coordResults(lat, long) {
+/* function coordResults(lat, long) {
     fetch(`${api.base}forecast?lat=${lat}&lon=${long}&lang=${api.lang}&units=${api.units}&cnt=7&APPID=${api.key}`)
         .then(response => {
             if (response.ok) {
@@ -58,7 +60,7 @@ function enter(event) {
     if (key === 13) {
         searchResults(search_input.value)
     }
-}
+} */
 
 /* function searchResults(city) {
     fetch(`${api.base}weather?q=${city}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
@@ -115,15 +117,15 @@ function searchResults(city) {
 } */
 
 /* Tentativa de mostrar os resultados do Forecast */
-function displayResults(weather) {
-    console.log(weather)
+function displayResults(forecast) {
+    console.log(forecast)
 
-    city.innerText = `${forecast.name}, ${forecast.sys.country}`;
+    cityName.innerText = `${forecast.name}, ${city.sys.country}`;
 
     let now = new Date();
     date.innerText = dateBuilder(now);
 
-    let iconName = weather.weather[0].icon;
+    let iconName = weather.weather.icon;
     container_img.innerHTML = `<img src="./icons/${iconName}.png">`;
 
     let temperature = `${Math.round(weather.main.temp)}`
@@ -134,11 +136,15 @@ function displayResults(weather) {
     weather_t.innerText = capitalizeFirstLetter(weather_tempo)
 
     low_high.innerHTML = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
+
+    container_feels_like.innerHTML = `${Math.round(forecast.feels_like)}°C`;
+
+    weather_alert.innerHTML = '${(forecast.weather-alert)}';
 }
 
 function dateBuilder(d) {
     let days = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-    let months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julio", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+    let months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
     let day = days[d.getDay()]; //getDay: 0-6
     let date = d.getDate();
